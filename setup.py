@@ -1,6 +1,8 @@
-import setuptools
 import os
 import shutil
+
+import setuptools
+
 import pymifapi
 
 if not os.path.exists('pymifapi'):
@@ -28,11 +30,10 @@ setuptools.setup(
     install_requires=install_requires,
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Environment :: MacOS X",
-        "Environment :: Win32 (MS Windows)",
         "Intended Audience :: End Users/Desktop",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Environment :: Web Environment",
         "Topic :: Scientific/Engineering :: Image Processing",
         "Topic :: Utilities",
         "Topic :: Multimedia :: Graphics",

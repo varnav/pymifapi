@@ -5,12 +5,14 @@
 # MIT License
 
 import datetime
-from pymifapi import sendfile, getfile
-from apscheduler.schedulers.background import BackgroundScheduler
 import os
 import pathlib
 from typing import Iterable
+
 import click
+from apscheduler.schedulers.background import BackgroundScheduler
+
+from pymifapi import sendfile, getfile
 
 SUPPORTED_FORMATS = ['jpeg', 'jpg', 'png']
 

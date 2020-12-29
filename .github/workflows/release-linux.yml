@@ -32,7 +32,7 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 . --count --max-line-length=250 --statistics
-          
+
       - name: Test
         run: pytest
 

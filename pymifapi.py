@@ -1,23 +1,44 @@
-import requests
 import json
+import os
+from typing import Union
 
-__version__ = "0.1.0"
+import requests
+
+__version__ = "0.1.1"
 
 
-def getfile(dl_uri, outfile):
+def getfile(dl_uri: str, outfile: os.PathLike) -> int:
+    """
+    Get file from URL and save it to file (basically wget)
+    :param dl_uri: Download URL
+    :param outfile: Filesystem path
+    :return: HTTP request status code
+    """
     print("Saving from", dl_uri, "to", outfile)
     try:
         r = requests.get(dl_uri)
         with open(outfile, 'wb') as f:
             f.write(r.content)
+            return r.status_code
     except Exception as e:
         print("Exception:", e)
 
 
-def sendfile(infile, asyncronous=False, filetype='jxl', codec='aom'):
+def sendfile(infile: os.PathLike, asyncronous=False, filetype='jxl', codec='aom') -> Union[str, None]:
+    """
+    Send file to mifapi for conversion
+    :param infile: Path to file
+    :param asyncronous: If yes, return immediately, convert later
+    :param filetype: Resulting file. Can be jxl or avif.
+    :param codec: AVIF encoder. Can be aom, svt, rav1e
+    :return: URL to download resulting file
+    """
     if filetype not in ['jxl', 'avif']:
         print("Error in filetype parameter")
-        exit(1)
+        return
+    if codec not in ['aom', 'svt', 'rav1e']:
+        print("Error in filetype parameter")
+        return
     if asyncronous:
         asyncronous = 'async'
     else:
